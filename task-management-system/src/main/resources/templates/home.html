@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Task Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS for the welcome page -->
+    <style>
+        /* Custom CSS for the welcome page */
+        body {
+            background-color: #f5f5f5; /* Light gray background color */
+        }
+        .container {
+            text-align: center;
+        }
+        .welcome-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333; /* Dark text color */
+            margin-top: 100px;
+        }
+        .get-started-button {
+            margin-top: 20px;
+        }
+    </style>
+    <!-- Custom CSS for the navigation bar -->
+    <style>
+        /* Custom CSS for background color */
+       .navbar {
+            background-color: rgb(25, 164, 206); /* Purple-blue background color */
+        }
+        /* Center items horizontally */
+        .navbar-brand, .navbar-nav {
+            justify-content: center;
+        }
+        .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-tasks"></i> Task Manager</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tasks"><i class="fas fa-tasks"></i> Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Welcome Page Content -->
+    <div class="container">
+        <h1 class="welcome-text">Manage your Tasks!</h1>
+        <a href="tasks" class="btn btn-primary get-started-button">Get Started</a>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (for responsive behavior) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
