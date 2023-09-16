@@ -1,21 +1,28 @@
 package com.zayar.practice.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
+import com.zayar.practice.api.model.LoginBody;
 import com.zayar.practice.api.model.RegistrationBody;
 import com.zayar.practice.exception.UserAlreadyExistsException;
 import com.zayar.practice.model.LocalUser;
 import com.zayar.practice.model.dao.LocalUserDAO;
-
-import jakarta.validation.Valid;
 
 @Service
 public class UserService {
 	
 	private LocalUserDAO localUserDao;
 	
-	public UserService(LocalUserDAO localUserDAO) {
+	private EncryptionService encryptionService;
+	
+	private JWTService jwtService;
+	
+	public UserService(LocalUserDAO localUserDAO, EncryptionService encryptionService, JWTService jwtService) {
 		this.localUserDao=localUserDAO;
+		this.jwtService=jwtService;
+		this.encryptionService=encryptionService;
 	}
 
 	public LocalUser registerUser( RegistrationBody registrationBody) throws UserAlreadyExistsException{
@@ -32,11 +39,21 @@ public class UserService {
 		user.setUsername(registrationBody.getUsername());
 		// TO DO : Encrypt the Passwords
 		
-		user.setPassword(registrationBody.getPassword());
+		user.setPassword(encryptionService.encryptPasssword(registrationBody.getPassword()));
 		
 		return localUserDao.save(user);
 		
-		
-		
+	}
+	
+	public String loginUser(LoginBody loginBody) {
+		Optional<LocalUser> opUser = localUserDao.findByUsernameIgnoreCase(loginBody.getUsername());
+		if(opUser.isPresent()) {
+			LocalUser user = opUser.get();
+			
+			if(encryptionService.verifyPassword(loginBody.getPassword(), user.getPassword())) {
+				return jwtService.generateJWT(user); 
+			}
+		}
+		return null;
 	}
 }
